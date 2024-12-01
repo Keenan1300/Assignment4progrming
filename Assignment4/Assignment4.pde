@@ -1,14 +1,41 @@
-float hey; 
+//initialize variables//
+float hey;
+
+boolean TitleScreen;
+boolean WinScreen;
+boolean LoseScreen;
+boolean MainGame;
+
 
 void setup()
 { 
-  size(400,400);
+size(920,620);
 background(0);
+TitleScreen = true;
+WinScreen = false;
+LoseScreen = false;
+MainGame = false;
 }
 
 void draw()
 {
-  rectMode(CORNER);
-  rect(200,200,50,50);
-  fill(255,0,0);
+  if (TitleScreen == true){
+  DrawTitleScreen();
+  }
+  if (WinScreen == true){
+  DrawTitleScreen();
+  }
+  if (LoseScreen == true){
+  DrawLoseScreen();
+  }
+  if (MainGame == true){
+  DrawMainGame();
+  }
+
+}
+
+void DrawStartButton(){
+PIimage
+
+
 }
