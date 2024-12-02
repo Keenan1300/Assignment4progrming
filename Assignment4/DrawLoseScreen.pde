@@ -1,3 +1,5 @@
-void DrawLoseScreen(){
-rect(20,20,20,20);
+void DrawLoseScreen()
+{
+background(0);
+ellipse(0,0,20,20);
 }
