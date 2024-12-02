@@ -1,12 +1,14 @@
 //initialize variables//
 float hey;
+float enviroPositiveX;
+float enviroNegativeX;
 
 boolean TitleScreen;
 boolean WinScreen;
 boolean LoseScreen;
 boolean MainGame;
 
-//images
+//initialize images
 PImage StartButton;
 PImage Landscapebuildings;
 PImage closeattacking;
@@ -19,9 +21,16 @@ PImage GunSlot;
 PImage Reload;
 PImage Skull;
 PImage Bullet;
+PImage Armour;
+PImage Health;
+PImage GameUI;
 
-void setup()
-{ 
+//initialize arraylists
+
+
+void setup() {
+
+//set canvas settings
 imageMode(CENTER);
 size(920,620);
 background(0);
@@ -31,6 +40,10 @@ TitleScreen = true;
 WinScreen = false;
 LoseScreen = false;
 MainGame = false;
+
+//set float variables
+enviroPositiveX = 0;
+enviroNegativeX = 0;
 
 //Introduce images
 StartButton = loadImage("start.png");
@@ -45,16 +58,18 @@ GunSlot = loadImage("GunSlot.png");
 Reload = loadImage("Reload.png");
 Skull = loadImage("Skull.png");
 Bullet = loadImage("Bulletammo.png");
+Armour = loadImage("Armour.png");
+Health = loadImage("Health.png");
+GameUI = loadImage("GameUI.png");
 
 }
 
-void draw()
-{
+void draw(){
   if (TitleScreen == true){
   DrawTitleScreen();
   }
   if (WinScreen == true){
-  DrawTitleScreen();
+  DrawWinScreen();
   }
   if (LoseScreen == true){
   DrawLoseScreen();
@@ -73,6 +88,9 @@ if(mousePressed == true){
   fill(255);
   rect(0,0,100,50);
   MainGame = true;
+  LoseScreen = false;
+  TitleScreen = false;
+  WinScreen = false;
 }
 }
 }
