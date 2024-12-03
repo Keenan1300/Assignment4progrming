@@ -1,13 +1,24 @@
 //initialize variables//
 
 //initialize float variables
-float hey;
 float enviroPositiveX;
 float enviroNegativeX;
 float bulletUIposition;
 float healthUIposition;
 float armourUIposition;
 float guncooldown;
+
+//initialize float variables for zombie positions
+int Zombie1positionX;
+int Zombie2positionX;
+int Zombie3positionX;
+int Zombie4positionX;
+int Zombie5positionX;
+int Zombie6positionX;
+int Zombie7positionX;
+int Zombie8positionX;
+int Zombie9positionX;
+int Zombie10positionX;
 
 //initialize int variables
 int AMMOCOUNT;
@@ -18,6 +29,7 @@ int ARMOURCOUNT;
 int MAXARMOURCOUNT;
 int ZombSpawnCooldown;
 int jammer;
+int ZombCount; 
 
 //initialize booleans
 boolean TitleScreen;
@@ -27,6 +39,7 @@ boolean MainGame;
 boolean character2;
 boolean character1;
 boolean GUNISJAMMED;
+boolean gunshot;
 
 //initialize images
 PImage StartButton;
@@ -47,20 +60,38 @@ PImage GameUI;
 PImage character2UIscreen;
 PImage character1UIscreen;
 PImage GUNJAMMED;
+PImage YouWinScreen;
 
 //initialize arraylists
-Zombies Z;
-ArrayList<Zombies> Zomb;
-
 Bullets[] B = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
 Armourpoints[] A = new Armourpoints[3];
+Zombies[] Z = new Zombies[(int)random(-200,1200)];
+
+ZombieSpawn z;
+ArrayList<ZombieSpawn> zombie;
+
 
 void setup() {
 
+//setup arrays
+zombie = new ArrayList<ZombieSpawn>();
+  
+//setup random numbers
+Zombie1positionX = (int)random(-300,1200);
+Zombie2positionX = (int)random(-300,1200);
+Zombie3positionX = (int)random(-300,1200);
+Zombie4positionX = (int)random(-300,1200);
+Zombie5positionX = (int)random(-300,1200);
+Zombie6positionX = (int)random(-300,1200);
+Zombie7positionX = (int)random(-300,1200);
+Zombie8positionX = (int)random(-300,1200);
+Zombie9positionX = (int)random(-300,1200);
+Zombie10positionX = (int)random(-300,1200);
+
 //allow for cooldowns
  guncooldown = 10;
- ZombSpawnCooldown = 20;
+ ZombSpawnCooldown = 50;
  
 //setup ammo counts
  B[0] = new Bullets(6);
@@ -77,8 +108,17 @@ void setup() {
  A[1] = new Armourpoints(2);
  A[2] = new Armourpoints(0);
  
-//Arraylist For zombie generation
- Zomb = new ArrayList<Zombies>();
+//Array For zombie generation
+ Z[0] = new Zombies(Zombie1positionX,360);
+ Z[1] = new Zombies(Zombie2positionX,360);
+ Z[2] = new Zombies(Zombie3positionX,360);
+ Z[3] = new Zombies(Zombie4positionX,360);
+ Z[4] = new Zombies(Zombie5positionX,360);
+ Z[5] = new Zombies(Zombie6positionX,360);
+ Z[6] = new Zombies(Zombie7positionX,360);
+ Z[7] = new Zombies(Zombie8positionX,360);
+ Z[8] = new Zombies(Zombie9positionX,360);
+ Z[9] = new Zombies(Zombie10positionX,360);
  
 //setup UI positioning for main game - assists arraylists in locating where they should display statistics
  bulletUIposition = 220;
@@ -132,12 +172,24 @@ Skull = loadImage("Skull.png");
 
 void draw(){
   
+  
   //Zombie mechanics - cooldown to allow lapses in time between zombie spawns.
   ZombSpawnCooldown = ZombSpawnCooldown - 1;
-  println(ZombSpawnCooldown);
   if (ZombSpawnCooldown < 1){
-  ZombSpawnCooldown = (int)random(10,65);
+  ZombSpawnCooldown = (int)random(50,65);
   }
+  Z[0].update();
+  Z[1].update();
+  Z[2].update();
+  Z[3].update();
+  Z[4].update();
+  Z[5].update();
+  Z[6].update();
+  Z[7].update();
+  Z[8].update();
+  Z[9].update();
+  
+  
   
   //keep framerate consistent
   frameRate(30);
@@ -159,9 +211,22 @@ void draw(){
   DrawMainGame();
   
 }
+
   }
-
-
+//FireBullet
+void mouseClicked() {
+if (MainGame == true){
+if(guncooldown < 1){
+if (mouseY > 123){  
+B[0].shootbullet();
+gunshot = true;
+guncooldown = 25;
+}
+}
+else{gunshot = false;
+}
+}
+}
 
 //basic button that will transport the player to the main shooter game
 void DrawStartButton(){
@@ -181,13 +246,19 @@ if(mousePressed == true){
 }
 }
 
-//FireBullet
-void mouseClicked() {
-if (MainGame == true){
-if(guncooldown < 1){
-if (mouseY > 123){  
-B[0].shootbullet();
-guncooldown = 25;
+//basic button that will transport the player to the main shooter game
+void ReturntotitleButton(){
+image(StartButton, 460,310);
+if(mouseX > 360 && mouseX < 560){
+if(mouseY > 275 && mouseY < 335){
+if(mousePressed == true){
+  fill(255);
+  rect(0,0,100,50);
+  MainGame = false;
+  LoseScreen = false;
+  TitleScreen = true;
+  WinScreen = false;
+  guncooldown = 10;
 }
 }
 }
