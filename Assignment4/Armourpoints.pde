@@ -1,5 +1,4 @@
 class Armourpoints{
- int ARMOURCOUNT;
  Armourpoints(int tempD){
  ARMOURCOUNT = tempD;
  MAXARMOURCOUNT = tempD;
