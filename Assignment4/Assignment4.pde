@@ -22,10 +22,10 @@ int Zombie10positionX;
 
 //initialize int variables
 int AMMOCOUNT;
+int ARMOURCOUNT;
 int MAXAMMOCOUNT;
 int HPCOUNT;
 int MAXHPCOUNT; 
-int ARMOURCOUNT;
 int MAXARMOURCOUNT;
 int ZombSpawnCooldown;
 int jammer;
@@ -66,17 +66,19 @@ PImage YouWinScreen;
 Bullets[] B = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
 Armourpoints[] A = new Armourpoints[3];
+
 Zombies[] Z = new Zombies[(int)random(-200,1200)];
 
 ZombieSpawn z;
+Healthpointsarray h;
 ArrayList<ZombieSpawn> zombie;
-
+ArrayList<Healthpointsarray> health;
 
 void setup() {
 
 //setup arrays
 zombie = new ArrayList<ZombieSpawn>();
-  
+
 //setup random numbers
 Zombie1positionX = (int)random(-300,1200);
 Zombie2positionX = (int)random(-300,1200);
@@ -93,20 +95,45 @@ Zombie10positionX = (int)random(-300,1200);
  guncooldown = 10;
  ZombSpawnCooldown = 50;
  
-//setup ammo counts
- B[0] = new Bullets(6);
- B[1] = new Bullets(4);
- B[2] = new Bullets(3);
+
+
+
+ 
+//Default difficulty mode enabled.
 
 //setup health points
  H[0] = new Healthpoints(5);
- H[1] = new Healthpoints(4);
- H[2] = new Healthpoints(3);
- 
+
+//setup ammo counts
+ B[0] = new Bullets(6);
+
 //setup armour points
  A[0] = new Armourpoints(5);
- A[1] = new Armourpoints(2);
- A[2] = new Armourpoints(0);
+ 
+ //Activate this line for medium difficulty
+ 
+ //setup healthpoints
+ //H[1] = new Healthpoints(4);
+ 
+ //setup armour points
+ //A[1] = new Armourpoints(2);
+ 
+ //setup ammo counts
+ //B[1] = new Bullets(4);
+ 
+ 
+ //Activate this line for Hard difficulty
+
+ //health points
+ //H[2] = new Healthpoints(3);
+ 
+ //setup armour points
+ //A[2] = new Armourpoints(0);
+ 
+ //setup ammo counts
+ //B[2] = new Bullets(3);
+
+ 
  
 //Array For zombie generation
  Z[0] = new Zombies(Zombie1positionX,360);
@@ -120,10 +147,12 @@ Zombie10positionX = (int)random(-300,1200);
  Z[8] = new Zombies(Zombie9positionX,360);
  Z[9] = new Zombies(Zombie10positionX,360);
  
+ 
 //setup UI positioning for main game - assists arraylists in locating where they should display statistics
  bulletUIposition = 220;
  healthUIposition = 576;
  armourUIposition = 339;
+ 
 //set canvas settings
 imageMode(CENTER);
 size(920,620);
@@ -172,6 +201,7 @@ Skull = loadImage("Skull.png");
 
 void draw(){
   
+
   
   //Zombie mechanics - cooldown to allow lapses in time between zombie spawns.
   ZombSpawnCooldown = ZombSpawnCooldown - 1;
@@ -217,16 +247,13 @@ void draw(){
 void mouseClicked() {
 if (MainGame == true){
 if(guncooldown < 1){
-if (mouseY > 123){  
+if (mouseY > 100){ 
 B[0].shootbullet();
-gunshot = true;
-guncooldown = 25;
-}
-}
-else{gunshot = false;
 }
 }
 }
+}
+
 
 //basic button that will transport the player to the main shooter game
 void DrawStartButton(){
