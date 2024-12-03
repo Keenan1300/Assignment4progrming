@@ -1,15 +1,21 @@
 void DrawMainGame(){
-//refresh zombie generation
+
+  //create health bar
+  health = new ArrayList<Healthpointsarray>(6);
+  health.add(new Healthpointsarray());
+  
+  
+  //refresh zombie generation
 
 
 //Create Rotational map effect - environment settings
 if(mouseX > 690 && enviroPositiveX > -450){
-enviroNegativeX = enviroNegativeX + 9;
-enviroPositiveX = enviroPositiveX - 9;
+enviroNegativeX = enviroNegativeX + 18;
+enviroPositiveX = enviroPositiveX - 18;
 }
 if(mouseX < 230 && enviroNegativeX > -450){
-enviroPositiveX = enviroPositiveX + 9;
-enviroNegativeX = enviroNegativeX - 9;
+enviroPositiveX = enviroPositiveX + 18;
+enviroNegativeX = enviroNegativeX - 18;
 }
 image(Landscapebuildings, (460 + enviroPositiveX) - enviroNegativeX,310);
 
@@ -79,9 +85,6 @@ if (ZombCount > 0){
 }
 
 
-//create mousecross hair
-image(Crosshairmouse, mouseX,mouseY);
-
 //GameUI settings, establish character picture and UI interface position
 image(GameUI,460,310);
 if (character2 == true){
@@ -89,6 +92,7 @@ image(character2UIscreen,460,310);
 }
 
 //Display Health
+//health.get(0).displaycount();
 H[0].displaycount();
 
 //Display Armour
@@ -101,4 +105,7 @@ B[0].displaycount();
 if(GUNISJAMMED == true){
 image(GUNJAMMED,460,310);
 }
+
+//create mousecross hair
+image(Crosshairmouse, mouseX,mouseY);
 }
