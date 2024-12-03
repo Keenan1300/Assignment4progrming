@@ -1,5 +1,6 @@
-void DrawLoseScreen()
-{
-background(0);
-ellipse(0,0,20,20);
+void DrawLoseScreen(){
+fill(#2c0000);
+rectMode(CORNER);
+rect(0,0,920,620);
+ReturntotitleButton();
 }
