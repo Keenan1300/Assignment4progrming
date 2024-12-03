@@ -1,28 +1,51 @@
 class Zombies{
-  PVector location; 
-  float progression;
   float approachtimer;
-  Zombies(){
-  location = new PVector(random(-900,1260),310);
+  float Xlocation; 
+  float progression;
+  float ZombieHP = 2;
+  boolean isDead = false;
+  
+  Zombies(int tempD, int tempE){
+  Xlocation = tempD;
+  approachtimer = tempE;
   }
- void update(){
- approachtimer = approachtimer - 1;
- 
- }
+
  void display(){
-   progression = location.x;
-   if (approachtimer > 40 ){
-   image(zombiefar,progression,location.y);
+   if (ZombieHP > 0){
+   progression = (Xlocation - enviroNegativeX) + enviroPositiveX;
+   if (approachtimer > 250 ){
+   image(zombiefar,progression,390);
    }
-    if (approachtimer < 40 ){
-   image(Zombieapproachmid,progression,location.y);
+    if (approachtimer < 250 ){
+   image(Zombieapproachmid,progression,330);
    }
-    if (approachtimer < 10 ){
-   image(closeattacking,progression,location.y);
+    if (approachtimer < 100 ){
+   image(closeattacking,progression,330);
    }
+ }
  }
  
- void createnewzombie(){
- Zomb.add(new Zombies());
+void update(){
+ if (approachtimer > 0){ 
+ approachtimer = approachtimer - 1;
  }
+  println(approachtimer);
+if(mouseX > progression - 50 && mouseX < progression + 50){
+if(mouseY > 280 && mouseY < 360){
+if(mousePressed == true){
+if(GUNISJAMMED == false){
+if(guncooldown < 1){
+ ZombieHP = ZombieHP - 1;
 }
+}
+if(ZombieHP == 0){
+isDead = true;
+}
+if(isDead == true){
+approachtimer = 50;
+}
+}
+}
+}
+}
+ }
