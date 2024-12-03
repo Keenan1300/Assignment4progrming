@@ -1,5 +1,4 @@
 class Healthpoints{
- int HPCOUNT;
  Healthpoints(int tempD){
  HPCOUNT = tempD;
  MAXHPCOUNT = tempD;
