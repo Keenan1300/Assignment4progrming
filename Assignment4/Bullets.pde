@@ -48,15 +48,16 @@ void shootbullet() {
 if (AMMOCOUNT > 0){
 if (GUNISJAMMED == false){
 jammer = (int)random(1,9);
+println(jammer);
+AMMOCOUNT = AMMOCOUNT - 1;
 if (jammer == 2){
 GUNISJAMMED = true;
 }
-else{
-AMMOCOUNT = AMMOCOUNT - 1;
 }
 }
 }
-}
+
+
 void reload() {
 //Reload Bullets if currently loaded bullets are less than maximum
 if(GUNISJAMMED == false){
