@@ -9,6 +9,7 @@ float armourUIposition;
 float guncooldown;
 float buttonplacement;
 float destroyall;
+float gunsparktimer;
 
 //initialize float variables for zombie positions
 int Zombie1positionX;
@@ -43,6 +44,7 @@ boolean character2;
 boolean character1;
 boolean GUNISJAMMED;
 boolean gunshot;
+boolean gunsparks;
 
 //initialize images
 PImage StartButton;
@@ -80,14 +82,15 @@ Zombies[] Z = new Zombies[(int)random(-200,1200)];
 Healthpointsarray h;
 ArrayList<Healthpointsarray> health;
 
-BloodSplatter B;
+BloodSplatter C;
 ArrayList<BloodSplatter> blood;
 
 void setup() {
 
-//setup arrays
-
-
+//setup arrays and booleans
+blood = new ArrayList<BloodSplatter>();
+gunsparks = false;  
+gunsparktimer = 0;
 
 //allow for cooldowns
  guncooldown = 10;
@@ -251,6 +254,13 @@ GameTitle = loadImage("FinalShowDownText.png");
 
 void draw(){
   
+  
+  
+  
+ //create invisible blood particles
+   blood.add(new BloodSplatter());
+   
+   
  //check what screen the player is on, initates game sequence
   if (TitleScreen == true){
   DrawTitleScreen();
@@ -279,7 +289,19 @@ void draw(){
   //make timer for gunshots so player cant shoot everyshot in a few clicks
   guncooldown = guncooldown - 1;
 
-  
+
+   
+  //check if gunsparks are flying as a result of a gunshot
+  if(gunsparktimer > 0){
+  if (gunsparks == true){
+   for(int d = 0; d < blood.size();d++){
+   BloodSplatter B = blood.get(d);
+   B.update();
+   B.displayblood();
+   gunsparktimer = gunsparktimer - 1;
+   }  
+  }
+  }  
 }
 
 //FireBullet
@@ -287,6 +309,10 @@ void mouseClicked() {
 if (MainGame == true){
 if(guncooldown < 1){
 if (mouseY > 100){ 
+
+//initiate gunspark
+  gunsparks = true;  
+  gunsparktimer = 10;
   
 //checks if a zombie is hit, and if they are, remove a point of health from them.
 Z[0].zombieshot();
