@@ -1,3 +1,5 @@
+//import sound liberaries for sound effects
+import processing.sound.*;
 //initialize variables//
 
 //initialize float variables
@@ -68,6 +70,11 @@ PImage GameWintext;
 PImage GameWinCrown;
 PImage GameTitle;
 
+//initialize audio
+SoundFile SHOTSOUND;
+SoundFile RELOADSOUND;
+
+
 //initialize arraylists
 Bullets[] B = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
@@ -81,6 +88,11 @@ ArrayList<Healthpointsarray> health;
 
 void setup() {
 
+//Setup Sound effects
+SHOTSOUND = new SoundFile(this,"GUNSHOTSOUND.wav");
+RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
+
+  
 //setup arrays
 
 
