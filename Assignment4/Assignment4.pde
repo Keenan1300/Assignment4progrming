@@ -76,11 +76,7 @@ Bullets[] B = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
 Armourpoints[] A = new Armourpoints[3];
 
-Zombies[] Z = new Zombies[(int)random(-200,1200)];
-
-
-Healthpointsarray h;
-ArrayList<Healthpointsarray> health;
+Zombies[] Z = new Zombies[10];
 
 BloodSplatter C;
 ArrayList<BloodSplatter> blood;
@@ -252,18 +248,7 @@ GameTitle = loadImage("FinalShowDownText.png");
 }
 
 void draw(){
-  
-   blood.add(new BloodSplatter());
    
-  //check if gunsparks are flying as a result of a gunshot
-  if (gunsparks == true){
-   for(int d = 0; d < blood.size();d++){
-   BloodSplatter B = blood.get(d);
-   B.update();
-   B.displayblood();
-   gunsparktimer = gunsparktimer - 1;
-   }  
-  }
    
  //check what screen the player is on, initates game sequence
   if (TitleScreen == true){
@@ -317,6 +302,7 @@ Z[6].zombieshot();
 Z[7].zombieshot();
 Z[8].zombieshot();
 Z[9].zombieshot();
+   
 
 //removes bullet from chamber
 B[0].shootbullet();

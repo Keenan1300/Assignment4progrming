@@ -1,6 +1,4 @@
 void DrawMainGame(){
-  
-//refresh zombie generation
 
 
 //Create Rotational map effect - environment settings

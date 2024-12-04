@@ -6,14 +6,16 @@ class Zombies{
   float mercyperiod = 3000;
   boolean isDead = false;
   boolean targeted = false;
-  Zombies(int tempD){
+  BloodSplatter C;
+  ArrayList<BloodSplatter> blood;
+  
+  Zombies(float tempD){
   Xlocation = tempD;
+  blood = new ArrayList<BloodSplatter>(); 
   }
 
  void display(){
    
-   //check if a zombie is dead
-    
    //check if zombieHP is higher than 0, and if it is, then show the zombie
    if (ZombieHP > 0){
    progression = (Xlocation - enviroNegativeX) + enviroPositiveX;
@@ -38,10 +40,23 @@ class Zombies{
    }
    }
  }
+        //zombies bleed if they are hit by bullet
+if (ZombieHP == 1){
+   blood.add(new BloodSplatter(progression));
+   
+  //Zombie bleeds if it is shot
+   for(int d = 0; d < blood.size();d++){
+   BloodSplatter B = blood.get(d);
+   B.update();
+   B.displayblood();
+   gunsparktimer = gunsparktimer - 1;
+   }  
+   
+}
  }
  
 void update(){
-  
+
  if (ZombieHP < 0){
    isDead = true;
  } 
@@ -62,6 +77,8 @@ void update(){
    }
    }
    }
+
+ 
  
 if(mouseX > progression - 50 && mouseX < progression + 50){
 if(mouseY > 120){
@@ -79,13 +96,14 @@ void zombieshot()
   if(GUNISJAMMED == false){
   if(guncooldown < 1){
    ZombieHP = ZombieHP - 1;
-}
+  
 }
 
 if(isDead == true){
 DeadzombiesCount = DeadzombiesCount + 1;
 }
 gunshot = false;
+}
 }
 }
 }
