@@ -88,8 +88,7 @@ ArrayList<BloodSplatter> blood;
 void setup() {
 
 //setup arrays and booleans
-blood = new ArrayList<BloodSplatter>();
-gunsparks = false;  
+blood = new ArrayList<BloodSplatter>(); 
 gunsparktimer = 0;
 
 //allow for cooldowns
@@ -254,12 +253,17 @@ GameTitle = loadImage("FinalShowDownText.png");
 
 void draw(){
   
-  
-  
-  
- //create invisible blood particles
    blood.add(new BloodSplatter());
    
+  //check if gunsparks are flying as a result of a gunshot
+  if (gunsparks == true){
+   for(int d = 0; d < blood.size();d++){
+   BloodSplatter B = blood.get(d);
+   B.update();
+   B.displayblood();
+   gunsparktimer = gunsparktimer - 1;
+   }  
+  }
    
  //check what screen the player is on, initates game sequence
   if (TitleScreen == true){
@@ -291,17 +295,7 @@ void draw(){
 
 
    
-  //check if gunsparks are flying as a result of a gunshot
-  if(gunsparktimer > 0){
-  if (gunsparks == true){
-   for(int d = 0; d < blood.size();d++){
-   BloodSplatter B = blood.get(d);
-   B.update();
-   B.displayblood();
-   gunsparktimer = gunsparktimer - 1;
-   }  
-  }
-  }  
+
 }
 
 //FireBullet
@@ -310,8 +304,6 @@ if (MainGame == true){
 if(guncooldown < 1){
 if (mouseY > 100){ 
 
-//initiate gunspark
-  gunsparks = true;  
   gunsparktimer = 10;
   
 //checks if a zombie is hit, and if they are, remove a point of health from them.

@@ -7,6 +7,7 @@ void displaycount(){
 if (MainGame == true) {
 
 if((int)ARMOURCOUNT == 5){
+gunsparks = true ;
 image(Armour,armourUIposition, 582);
 image(Armour,armourUIposition-30,582);
 image(Armour,armourUIposition-60,582);
