@@ -1,21 +1,16 @@
 void DrawMainGame(){
-
-  //create health bar
-  health = new ArrayList<Healthpointsarray>(6);
-  health.add(new Healthpointsarray());
   
-  
-  //refresh zombie generation
+//refresh zombie generation
 
 
 //Create Rotational map effect - environment settings
-if(mouseX > 690 && enviroPositiveX > -450){
-enviroNegativeX = enviroNegativeX + 18;
-enviroPositiveX = enviroPositiveX - 18;
+if(mouseX > 700 && enviroPositiveX > -450){
+enviroNegativeX = enviroNegativeX + 13;
+enviroPositiveX = enviroPositiveX - 13;
 }
-if(mouseX < 230 && enviroNegativeX > -450){
-enviroPositiveX = enviroPositiveX + 18;
-enviroNegativeX = enviroNegativeX - 18;
+if(mouseX < 200 && enviroNegativeX > -450){
+enviroPositiveX = enviroPositiveX + 13;
+enviroNegativeX = enviroNegativeX - 13;
 }
 image(Landscapebuildings, (460 + enviroPositiveX) - enviroNegativeX,310);
 
@@ -38,44 +33,45 @@ GUNISJAMMED = false;
 }
 
 
-if (ZombSpawnCooldown < 2){
+if (ZombSpawnCooldown < 2000){
   ZombCount = ZombCount + 1;
+  println(ZombCount);
 }
 
-if (ZombCount > 16){
+if (ZombCount > 800){
   Z[9].update();
   Z[9].display();
 }
-if (ZombCount > 14){
+if (ZombCount > 800){
   Z[8].update();
   Z[8].display();
 }
-if (ZombCount > 12){
+if (ZombCount > 750){
   Z[7].update();
   Z[7].display();
 }
-if (ZombCount > 10){
+if (ZombCount > 700){
   Z[6].update();
   Z[6].display();
 }
 
-if (ZombCount > 8){
+if (ZombCount > 600){
   Z[5].update();
   Z[5].display();
 }
-if (ZombCount > 7){
+if (ZombCount > 500){
   Z[4].update();
   Z[4].display();
 }
-if (ZombCount > 5){
+if (ZombCount > 400){
   Z[3].update();
   Z[3].display();
 }
-if (ZombCount > 3){
+if (ZombCount > 300){
   Z[2].update();
   Z[2].display();
 }
-if (ZombCount > 1){
+if (ZombCount > 100){
   Z[1].update();
   Z[1].display();
 }
@@ -108,4 +104,25 @@ image(GUNJAMMED,460,310);
 
 //create mousecross hair
 image(Crosshairmouse, mouseX,mouseY);
+
+//if player has died switch to lose screen
+if(HPCOUNT < 1){
+LoseScreen = true;
+}
+
+//Establish win condition. If the player can kill 10 zombies they will win.
+if(Z[0].isDead == true && Z[1].isDead == true && Z[2].isDead == true && Z[3].isDead == true && Z[4].isDead == true && Z[5].isDead == true && Z[6].isDead == true && Z[7].isDead == true && Z[8].isDead == true && Z[9].isDead == true){
+TitleScreen = false;
+LoseScreen = false;
+MainGame = false;
+WinScreen = true;
+}
+
+if(ZombCount > 1200){
+TitleScreen = false;
+LoseScreen = false;
+MainGame = false;
+WinScreen = true;
+}
+
 }
