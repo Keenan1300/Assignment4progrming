@@ -9,8 +9,8 @@ class BloodSplatter {
  
  BloodSplatter(float tempD){
  bleedinglocation = tempD;
- acceleration = new PVector(0,0.05);
- velocity = new PVector(random(-15,15), random(-15,15));
+ acceleration = new PVector(1,3);
+ velocity = new PVector(random(-7,7), random(-15,15));
  location = new PVector(bleedinglocation,310);
  }
  
