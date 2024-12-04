@@ -79,10 +79,6 @@ void zombieshot()
   if(GUNISJAMMED == false){
   if(guncooldown < 1){
    ZombieHP = ZombieHP - 1;
-   for(int d = 0; d < blood.size();d++){
-  BloodSplatter B = blood.get(d);
-  B.update();
-  B.displayblood();
 }
 }
 
@@ -91,6 +87,5 @@ DeadzombiesCount = DeadzombiesCount + 1;
 }
 gunshot = false;
 }
-
 }
 }
