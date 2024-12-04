@@ -1,3 +1,5 @@
+//import sound liberaries for sound effects
+import processing.sound.*;
 //initialize variables//
 
 //initialize float variables
@@ -44,7 +46,6 @@ boolean character2;
 boolean character1;
 boolean GUNISJAMMED;
 boolean gunshot;
-boolean gunsparks;
 
 //initialize images
 PImage StartButton;
@@ -71,6 +72,11 @@ PImage GameWintext;
 PImage GameWinCrown;
 PImage GameTitle;
 
+//initialize audio
+SoundFile SHOTSOUND;
+SoundFile RELOADSOUND;
+
+
 //initialize arraylists
 Bullets[] B = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
@@ -86,6 +92,13 @@ void setup() {
 //setup arrays and booleans
 blood = new ArrayList<BloodSplatter>(); 
 gunsparktimer = 0;
+//Setup Sound effects
+SHOTSOUND = new SoundFile(this,"GUNSHOTSOUND.wav");
+RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
+
+  
+//setup arrays
+
 
 //allow for cooldowns
  guncooldown = 10;
@@ -248,8 +261,6 @@ GameTitle = loadImage("FinalShowDownText.png");
 }
 
 void draw(){
-   
-   
  //check what screen the player is on, initates game sequence
   if (TitleScreen == true){
   DrawTitleScreen();
@@ -278,9 +289,6 @@ void draw(){
   //make timer for gunshots so player cant shoot everyshot in a few clicks
   guncooldown = guncooldown - 1;
 
-
-   
-
 }
 
 //FireBullet
@@ -288,8 +296,6 @@ void mouseClicked() {
 if (MainGame == true){
 if(guncooldown < 1){
 if (mouseY > 100){ 
-
-  gunsparktimer = 10;
   
 //checks if a zombie is hit, and if they are, remove a point of health from them.
 Z[0].zombieshot();
@@ -302,7 +308,6 @@ Z[6].zombieshot();
 Z[7].zombieshot();
 Z[8].zombieshot();
 Z[9].zombieshot();
-   
 
 //removes bullet from chamber
 B[0].shootbullet();

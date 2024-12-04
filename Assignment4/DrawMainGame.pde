@@ -25,8 +25,11 @@ B[0].reload();
 
 //This button is for the times when the gun jams and the player needs to unjam it!
 if (mouseY < 120 && mouseX < 206 && mouseY > 72 && mouseX > 133){
+if(GUNISJAMMED == true){
 if(mousePressed == true){
+RELOADSOUND.play(); 
 GUNISJAMMED = false;
+}
 }
 }
 

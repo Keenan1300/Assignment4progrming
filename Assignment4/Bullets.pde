@@ -47,6 +47,7 @@ void shootbullet() {
   if (AMMOCOUNT > 0){
     if (GUNISJAMMED == false){
       jammer = (int)random(1,11);
+      SHOTSOUND.play();
       AMMOCOUNT = AMMOCOUNT - 1;
       guncooldown = 25;
       gunshot = true;
@@ -62,6 +63,7 @@ void reload() {
 //Reload Bullets if currently loaded bullets are less than maximum
 if(GUNISJAMMED == false){
 if(AMMOCOUNT < 6){
+RELOADSOUND.play();  
 AMMOCOUNT = 6;
 }
 }
