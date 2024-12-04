@@ -8,6 +8,7 @@ float healthUIposition;
 float armourUIposition;
 float guncooldown;
 float buttonplacement;
+float destroyall;
 
 //initialize float variables for zombie positions
 int Zombie1positionX;
@@ -78,6 +79,9 @@ Zombies[] Z = new Zombies[(int)random(-200,1200)];
 
 Healthpointsarray h;
 ArrayList<Healthpointsarray> health;
+
+BloodSplatter B;
+ArrayList<BloodSplatter> blood;
 
 void setup() {
 
