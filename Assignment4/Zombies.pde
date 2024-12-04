@@ -3,33 +3,36 @@ class Zombies{
   float Xlocation; 
   float progression;
   float ZombieHP = 2;
-  float mercyperiod = 2000;
+  float mercyperiod = 3000;
   boolean isDead = false;
-  
-  Zombies(int tempD, int tempE){
+  boolean targeted = false;
+  Zombies(int tempD){
   Xlocation = tempD;
-  approachtimer = tempE;
   }
 
  void display(){
+   
+   //check if a zombie is dead
+    
+   //check if zombieHP is higher than 0, and if it is, then show the zombie
    if (ZombieHP > 0){
    progression = (Xlocation - enviroNegativeX) + enviroPositiveX;
-   if (approachtimer > 250 ){
+   if (approachtimer > 550 ){
    image(zombiefar,progression,390);
    }
-    if (approachtimer < 250 ){
+    if (approachtimer < 550 ){
    image(Zombieapproachmid,progression,330);
    }
-    if (approachtimer < 100 ){
+    if (approachtimer < 150 ){
    image(closeattacking,progression,330);
     mercyperiod =  mercyperiod - 100;
    if(mercyperiod < 1){
    if (ARMOURCOUNT > 0){
-   mercyperiod = 2000;
+   mercyperiod = 3000;
    ARMOURCOUNT = ARMOURCOUNT - 1;
    }
    else{
-   mercyperiod = 2000;
+   mercyperiod = 3000;
    HPCOUNT = HPCOUNT - 1;
    }
    }
@@ -38,9 +41,13 @@ class Zombies{
  }
  
 void update(){
+  
+ if (ZombieHP < 0){
+   isDead = true;
+ } 
  if (approachtimer > 0){ 
  mercyperiod = mercyperiod - 1;
- approachtimer = approachtimer - 1;
+ approachtimer = approachtimer - 2;
  }
  
  if (approachtimer < 100 ){
@@ -56,24 +63,30 @@ void update(){
    }
    }
  
-  println(approachtimer);
 if(mouseX > progression - 50 && mouseX < progression + 50){
-if(mouseY > 280 && mouseY < 360){
-if(gunshot == true){
-if(GUNISJAMMED == false){
-if(guncooldown < 1){
- ZombieHP = ZombieHP - 1;
+if(mouseY > 120){
+targeted = true;
+}
+else{ 
+targeted = false;
 }
 }
-if(ZombieHP == 0){
-isDead = true;
 }
+
+void zombieshot()
+{
+  if(targeted == true){
+  if(GUNISJAMMED == false){
+  if(guncooldown < 1){
+   ZombieHP = ZombieHP - 1;
+}
+}
+
 if(isDead == true){
-approachtimer = 50;
+DeadzombiesCount = DeadzombiesCount + 1;
 }
 gunshot = false;
 }
+
 }
 }
-}
- }
