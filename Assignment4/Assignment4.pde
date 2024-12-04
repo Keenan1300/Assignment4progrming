@@ -78,15 +78,12 @@ SoundFile RELOADSOUND;
 
 
 //initialize arraylists
-Bullets[] B = new Bullets[3];
+Bullets[] C = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
 Armourpoints[] A = new Armourpoints[3];
 
 Zombies[] Z = new Zombies[10];
 
-
-Healthpointsarray h;
-ArrayList<Healthpointsarray> health;
 
 BloodSplatter B;
 ArrayList<BloodSplatter> blood;
@@ -118,7 +115,7 @@ RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
  H[0] = new Healthpoints(5);
 
 //setup ammo counts
- B[0] = new Bullets(6);
+ C[0] = new Bullets(6);
 
 //setup armour points
  A[0] = new Armourpoints(5);
@@ -150,7 +147,7 @@ RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
 //Array For zombie generation
   A[0] = new Armourpoints(5);
   H[0] = new Healthpoints(5);
-  B[0] = new Bullets(6);
+  C[0] = new Bullets(6);
   Z[0] = new Zombies(Zombie1positionX);
   Z[1] = new Zombies(Zombie2positionX);
   Z[2] = new Zombies(Zombie3positionX);
@@ -314,7 +311,7 @@ Z[8].zombieshot();
 Z[9].zombieshot();
 
 //removes bullet from chamber
-B[0].shootbullet();
+C[0].shootbullet();
 }
 }
 }
@@ -333,7 +330,7 @@ if(mousePressed == true){
 //reset statistcs to allow for game replayability
   A[0] = new Armourpoints(5);
   H[0] = new Healthpoints(5);
-  B[0] = new Bullets(6);
+  C[0] = new Bullets(6);
   Z[0] = new Zombies(Zombie1positionX);
   Z[1] = new Zombies(Zombie2positionX);
   Z[2] = new Zombies(Zombie3positionX);

@@ -39,7 +39,7 @@ class Zombies{
    else{
    mercyperiod = 3000;
    fill(255,0,0,50);
-   rect(0,0,1000,1000);
+   rect(460,0,2000,1000);
    image(slash,progression,310);
    HPCOUNT = HPCOUNT - 1;
    }

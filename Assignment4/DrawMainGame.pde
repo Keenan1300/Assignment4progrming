@@ -18,7 +18,7 @@ image(Landscapebuildings, (460 + enviroPositiveX) - enviroNegativeX,310);
 //Reload Button functionality - allows player to reload bullets
 if (mouseY < 72 && mouseX < 206 && mouseY > 17 && mouseX > 133){
 if(mousePressed == true){
-B[0].reload();
+C[0].reload();
 }
 }
 
@@ -96,7 +96,7 @@ H[0].displaycount();
 A[0].displaycount();
 
 //DisplayAmmo count
-B[0].displaycount();
+C[0].displaycount();
 
 //This image will pop up when the gun is jammed to tell the player they cant shoot!
 if(GUNISJAMMED == true){
