@@ -80,7 +80,7 @@ Zombies[] Z = new Zombies[(int)random(-200,1200)];
 Healthpointsarray h;
 ArrayList<Healthpointsarray> health;
 
-BloodSplatter B;
+BloodSplatter b;
 ArrayList<BloodSplatter> blood;
 
 void setup() {
