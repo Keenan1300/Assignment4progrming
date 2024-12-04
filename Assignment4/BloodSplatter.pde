@@ -26,11 +26,11 @@ class BloodSplatter {
   return false;}
   }
   
-  void display(){
+  void displayblood(){
    fill(255,100,0);
    ellipse(location.x,location.y,20,20);
  }
-  void addchunk(){
+  void addbloosplatter(){
    blood.add(new BloodSplatter());
   
   }
