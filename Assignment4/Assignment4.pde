@@ -84,7 +84,11 @@ Armourpoints[] A = new Armourpoints[3];
 
 Zombies[] Z = new Zombies[10];
 
-BloodSplatter C;
+
+Healthpointsarray h;
+ArrayList<Healthpointsarray> health;
+
+BloodSplatter B;
 ArrayList<BloodSplatter> blood;
 
 void setup() {

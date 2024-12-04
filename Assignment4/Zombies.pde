@@ -31,10 +31,16 @@ class Zombies{
    if(mercyperiod < 1){
    if (ARMOURCOUNT > 0){
    mercyperiod = 3000;
+     fill(255,0,0,50);
+   rect(0,0,1000,1000);
+   image(slash,progression,310);
    ARMOURCOUNT = ARMOURCOUNT - 1;
    }
    else{
    mercyperiod = 3000;
+   fill(255,0,0,50);
+   rect(0,0,1000,1000);
+   image(slash,progression,310);
    HPCOUNT = HPCOUNT - 1;
    }
    }
