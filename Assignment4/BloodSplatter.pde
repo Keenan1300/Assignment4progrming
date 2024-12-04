@@ -3,12 +3,12 @@ class BloodSplatter {
  PVector velocity;
  PVector acceleration;
  boolean killed;
- float duration = 300;
+ float duration = 1000;
  
  BloodSplatter(){
  acceleration = new PVector(0,0.05);
- velocity = new PVector(random(-1,12), random(-1,12));
- location = new PVector(mouseX + 120,mouseY - 70);
+ velocity = new PVector(random(-15,15), random(-15,15));
+ location = new PVector(mouseX,mouseY);
  }
  
   void update(){
@@ -31,7 +31,7 @@ class BloodSplatter {
    ellipse(location.x,location.y,20,20);
  }
   void addbloosplatter(){
-   blood.add(new BloodSplatter());
+  blood.add(new BloodSplatter());
   
   }
 }
