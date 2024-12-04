@@ -46,11 +46,11 @@ image(Bullet,bulletUIposition,34);
 void shootbullet() {
   if (AMMOCOUNT > 0){
     if (GUNISJAMMED == false){
-      jammer = (int)random(1,9);
+      jammer = (int)random(1,11);
       AMMOCOUNT = AMMOCOUNT - 1;
       guncooldown = 25;
       gunshot = true;
-      if (jammer == 2){
+      if (jammer == 1){
         GUNISJAMMED = true;
       }
     }
