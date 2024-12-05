@@ -1,3 +1,60 @@
+//FINAL SHOWDOWN - Psuedo code
+
+//import sound liberaries for sound effects
+//initialize variables//
+//initialize float variables
+//initialize int variables for zombie positions
+//initialize int variables for player statistics
+//initialize booleans
+//initialize images
+//initialize audio
+//initialize arrays
+//initialize arraylist PVector for zombie blood
+
+//code for setup
+////setup arrays and booleans
+//allow for cooldowns for the play fire rate, and the rate in which zombies spawn
+//Default settings.
+//setup health points
+//setup ammo counts
+//setup armour points
+//Array For zombie generation. This is here because it refreshes zombie statistics, including their location to the player, whether they're dead, and the randomized X location they spawn to.
+//ensure the players gun doesnt start off jammed.
+//Erase all zombies at the start of a game, controls zombie spawn rate and count.
+//mix-up zombie positions again to add replayability  
+//setup UI positioning for main game - assists arraylists in locating where they should display statistics
+//set canvas settings
+//set booleans
+//set float variables for map environment
+
+//introduce images:
+//buttons
+//background
+//zombiesprites
+//character pictures
+//statistic images
+//game-over loss
+//game-over win
+//title page
+
+//code for draw
+//check what screen the player is on with boolean checks, initates game sequence
+//Zombie mechanics - cooldown to allow lapses in time between zombie spawns.
+//keep framerate consistent
+//make timer for gunshots so player cant shoot everyshot in a few clicks
+//FireBullet if mouse is clicked.
+//checks if a zombie is hit, and if they are, remove a point of health from them.
+//function that conditionally removes bullet from chamber
+//basic button that will transport the player to the main shooter game
+//reset statistcs to allow for game replayability if start button is clicked.
+//Erase all zombies at the start of a new game 
+//navigates player to main game, disable all others so no overlap occurs
+//basic button that will transport the player to the main shooter game
+
+
+
+
+
 //import sound liberaries for sound effects
 import processing.sound.*;
 //initialize variables//
@@ -13,7 +70,7 @@ float buttonplacement;
 float destroyall;
 float gunsparktimer;
 
-//initialize float variables for zombie positions
+//initialize int variables for zombie positions
 int Zombie1positionX;
 int Zombie2positionX;
 int Zombie3positionX;
@@ -25,7 +82,7 @@ int Zombie8positionX;
 int Zombie9positionX;
 int Zombie10positionX;
 
-//initialize int variables
+//initialize int variables for player statistics
 int AMMOCOUNT;
 int ARMOURCOUNT;
 int MAXAMMOCOUNT;
@@ -77,14 +134,13 @@ SoundFile SHOTSOUND;
 SoundFile RELOADSOUND;
 
 
-//initialize arraylists
+//initialize arrays
 Bullets[] C = new Bullets[3];
 Healthpoints[] H = new Healthpoints[3];
 Armourpoints[] A = new Armourpoints[3];
-
 Zombies[] Z = new Zombies[10];
 
-
+//initialize arraylist PVector for zombie blood
 BloodSplatter B;
 ArrayList<BloodSplatter> blood;
 
@@ -97,19 +153,14 @@ gunsparktimer = 0;
 SHOTSOUND = new SoundFile(this,"GUNSHOTSOUND.wav");
 RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
 
-  
-//setup arrays
 
-
-//allow for cooldowns
+//allow for cooldowns for the play fire rate, and the rate in which zombies spawn
  guncooldown = 10;
  ZombSpawnCooldown = 0;
- DeadzombiesCount = 0;
 
 
 
- 
-//Default difficulty mode enabled.
+//Default settings.
 
 //setup health points
  H[0] = new Healthpoints(5);
@@ -120,31 +171,9 @@ RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
 //setup armour points
  A[0] = new Armourpoints(5);
  
- //Activate this line for medium difficulty
- 
- //setup healthpoints
- //H[1] = new Healthpoints(4);
- 
- //setup armour points
- //A[1] = new Armourpoints(2);
- 
- //setup ammo counts
- //B[1] = new Bullets(4);
- 
- 
- //Activate this line for Hard difficulty
-
- //health points
- //H[2] = new Healthpoints(3);
- 
- //setup armour points
- //A[2] = new Armourpoints(0);
- 
- //setup ammo counts
- //B[2] = new Bullets(3);
 
  
-//Array For zombie generation
+//Array For zombie generation. This is here because it refreshes zombie statistics, including their location to the player, whether they're dead, and the randomized X location they spawn to.
   A[0] = new Armourpoints(5);
   H[0] = new Healthpoints(5);
   C[0] = new Bullets(6);
@@ -181,10 +210,11 @@ RELOADSOUND = new SoundFile(this,"RELOADSOUND.wav");
   Z[8].approachtimer = random(700,900);
   Z[9].approachtimer = random(700,900);
   
+  
+//ensure the players gun doesnt start off jammed.
   GUNISJAMMED = false;
-  DeadzombiesCount = 0;
 
-//Erase all zombies at the start of a game 
+//Erase all zombies at the start of a game, controls zombie spawn rate and count.
  ZombSpawnCooldown = 0;
  ZombCount = 0;
 
@@ -220,11 +250,11 @@ character2 = true;
 character1 = false;
 
 
-//set float variables
+//set float variables for map environment
 enviroPositiveX = 0;
 enviroNegativeX = 0;
 
-//Introduce images
+//Introduce images:
 
 //buttons
 StartButton = loadImage("start.png");
@@ -262,7 +292,7 @@ GameTitle = loadImage("FinalShowDownText.png");
 }
 
 void draw(){
- //check what screen the player is on, initates game sequence
+ //check what screen the player is on with boolean checks, initates game sequence
   if (TitleScreen == true){
   DrawTitleScreen();
   }
@@ -292,7 +322,7 @@ void draw(){
 
 }
 
-//FireBullet
+//FireBullet if mouse is clicked.
 void mouseClicked() {
 if (MainGame == true){
 if(guncooldown < 1){
@@ -310,7 +340,7 @@ Z[7].zombieshot();
 Z[8].zombieshot();
 Z[9].zombieshot();
 
-//removes bullet from chamber
+//function that conditionally removes bullet from chamber
 C[0].shootbullet();
 }
 }
@@ -327,7 +357,7 @@ if(mouseY > 475 && mouseY < 535){
 if(mousePressed == true){
 
   
-//reset statistcs to allow for game replayability
+//reset statistcs to allow for game replayability if start button is clicked.
   A[0] = new Armourpoints(5);
   H[0] = new Healthpoints(5);
   C[0] = new Bullets(6);
